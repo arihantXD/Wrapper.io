@@ -5,6 +5,9 @@ export default {
     colors: {
       primary: "#FF7517",
       // secondary: "#ecc94b",
+      white: "#FFF",
+      danger: "#dc2626",
+      slate: "#e2e8f0",
     },
     screens: {
       sm: "640px",
