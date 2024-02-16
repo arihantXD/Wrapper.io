@@ -10,7 +10,7 @@ import { QuestionModal } from "../Components";
 const Register = () => {
   const [showModal, setShowModal] = useState(false);
   return (
-    <div className="h-[100vh] w-[100%]  flex items-center filter backdrop-blur-lg">
+    <div className="w-[100%] min-h-screen flex items-center filter backdrop-blur-lg">
       <div className="h-[500px] hidden md:block p-[20px] bg-primary rounded-l-md">
         <h3>Wrappers.io</h3>
         <h3 className="mt-[70px] text-center">Welcome Back</h3>

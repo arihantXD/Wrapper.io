@@ -1,39 +1,100 @@
+import { useRef, useState } from "react";
+
 const QuestionModal = ({ isVisible, onClose }) => {
   if (!isVisible) {
     return null;
   }
+  const [selectedTopics, setSelectedTopics] = useState([]);
+  const category = [
+    {
+      categoryName: "Technical",
+      topic: ["Machine Learning", "AI", "Web", "Android", "UI/UX", "Cloud"],
+    },
+  ];
+  function handleSelection(e, topic) {
+    if (!selectedTopics.find((element) => element === topic)) {
+      setSelectedTopics([...selectedTopics, topic]);
+      e.currentTarget.className =
+        "bg-[green] w-[200px] py-2 text-center rounded-md text-slate flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white";
+      e.currentTarget.firstElementChild.firstElementChild.setAttribute(
+        "d",
+        "M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1-.75-.75Z"
+      );
+    } else {
+      setSelectedTopics(selectedTopics.filter((element) => element !== topic));
+      e.currentTarget.className =
+        "bg-primary w-[200px] py-2 text-center rounded-md text-slate flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white";
+      e.currentTarget.firstElementChild.firstElementChild.setAttribute(
+        "d",
+        "M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
+      );
+    }
+  }
   return (
     <>
       <div
-        className="fixed inset-0 bg-opacity-25 bg-primary filter backdrop-blur-sm flex justify-center items-center"
+        className="fixed h-[100%] px-4 md:px-0 lg:px-0 inset-0 bg-opacity-25 bg-primary filter backdrop-blur-sm flex justify-center items-center"
         style={{ fontFamily: "Inter" }}
       >
-        <div className="w-[600px]">
-          <div className="p-2 rounded bg-white px-4">
-            <div className="mt-2 mb-2 text-xl font-semibold">
-              Help us serve you better.
+        <div className="w-[800px]">
+          <div className="p-3 rounded bg-white px-4">
+            <div className="flex flex-col gap-2 mt-2 mb-2 md:mb-4 lg:mb-6 text-xl font-semibold">
+              <span>Help us serve you better.</span>
+              <span className="text-lg font-normal">
+                Please select your interests from the below mentioned
+                categories.
+              </span>
             </div>
-            <form className="flex flex-col items-end">
-              <textarea
-                name="questions"
-                id="questionTextarea"
-                className="w-[100%] border-2 p-2 border-primary outline-0 outline-primary rounded-md focus:outline focus:outline-primary focus:outline-1 mb-3"
-                cols="30"
-                rows="10"
-                placeholder="Tell us about your interests"
-              ></textarea>
-              <div className="w-[100%] flex justify-end gap-3 ">
-                <button className="bg-primary px-2 py-1 rounded transition-all ease-in-out duration-400 hover:transition-all hover:ease-in-out hover:duration-400 hover:shadow-md hover:text-slate">
-                  Submit
-                </button>
-                <button
-                  onClick={onClose}
-                  className="bg-danger px-2 py-1 rounded transition-all ease-in-out duration-400 hover:transition-all hover:ease-in-out hover:duration-400 hover:shadow-md hover:text-slate"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
+            <div className="w-[100%] flex gap-2 flex-wrap justify-center mb-4">
+              {category.map((category, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex flex-col gap-4 text-md font-semibold"
+                  >
+                    <div>{category.categoryName}</div>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {category.topic.map((topic, index) => {
+                        return (
+                          <button
+                            key={index}
+                            onClick={(e) => {
+                              handleSelection(e, topic);
+                            }}
+                            className="bg-primary w-[200px] py-2 text-center rounded-md text-slate flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>{topic}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex justify-center lg:justify-end gap-3">
+              <button className="bg-[green] px-2 py-1 rounded-md text-slate hover:text-white hover:shadow-[green] hover:shadow-sm">
+                Submit
+              </button>
+              <button
+                onClick={onClose}
+                className="bg-danger px-2 py-1 rounded-md text-slate hover:text-white hover:shadow-danger hover:shadow-sm"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       </div>
