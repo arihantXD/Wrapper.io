@@ -3,8 +3,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
-      primary: "#FF7517",
+      primary: "#FD5F07",
       // secondary: "#ecc94b",
+      white: "#FFF",
+      danger: "#dc2626",
+      slate: "#e2e8f0",
+      secondary: "#C84802",
     },
     screens: {
       sm: "640px",
