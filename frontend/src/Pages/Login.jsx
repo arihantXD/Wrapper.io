@@ -1,12 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import {
   Logo,
   PrimaryButton,
   PrimaryFormInput,
   SecondaryButton,
 } from "../Components";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleLogin = async (email, password) => {
+    const data = { email, password };
+    try {
+      const result = await axios.post("/api/auth/login", data);
+      toast.success("User logged in successfully.", {
+        duration: 1500,
+        position: "bottom-center",
+      });
+      navigate("/home");
+      // return redirect("/landing");
+    } catch (error) {
+      console.log(error.response);
+      toast.error("Internal server error.", {
+        duration: 1500,
+        position: "bottom-center",
+      });
+    }
+  };
   return (
     <div className="h-[100vh] w-[100%]  flex items-center">
       <div className="h-[500px] hidden md:block p-[20px] bg-primary rounded-l-md">
@@ -25,36 +49,31 @@ const Login = () => {
         <div className="text-center">
           <Logo />
         </div>
-        <h3 className="mt-[10px] font-medium text-center">Create Account</h3>
+        <h3 className="mt-[10px] font-medium text-center">Login</h3>
         <div className="mt-[40px] flex flex-col items-center gap-[15px]">
           <PrimaryFormInput
-            type="text"
-            defaultValue="Arihant Kamde"
-            name="name"
-            placeholder="Enter your name"
-            required="required"
-          />
-          <PrimaryFormInput
-            type="text"
-            defaultValue="arihant@gmail.com"
+            type="email"
             name="email"
             placeholder="Enter your email"
-            required="required"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
           <PrimaryFormInput
             type="password"
-            defaultValue="name"
             name="name"
             placeholder="Enter your password"
-            required="required"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </div>
         <div className="text-center mt-[50px]">
-          <Link to="/login">
-            <PrimaryButton text="Login" />
-          </Link>
+          <PrimaryButton
+            text="Login"
+            onClick={() => handleLogin(email, password)}
+          />
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

@@ -1,6 +1,41 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { redirect } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
-const QuestionModal = ({ isVisible, onClose }) => {
+const QuestionModal = ({
+  isVisible,
+  onClose,
+  name,
+  email,
+  password,
+  confirmPassword,
+}) => {
+  const handleRegister = async (selectedTopics) => {
+    if (selectedTopics.length === 0) {
+      toast.error("Select some topics.", {
+        duration: 1500,
+        position: "bottom-center",
+      });
+      return;
+    }
+    const data = { name, email, password, selectedTopics };
+    try {
+      const result = await axios.post("/api/auth/register", data);
+      toast.success("User registered, please login.", {
+        duration: 1500,
+        position: "bottom-center",
+      });
+      onClose();
+      return redirect("/login");
+    } catch (error) {
+      toast.error("Internal server error.", {
+        duration: 1500,
+        position: "bottom-center",
+      });
+    }
+  };
+
   if (!isVisible) {
     return null;
   }
@@ -33,7 +68,7 @@ const QuestionModal = ({ isVisible, onClose }) => {
   return (
     <>
       <div
-        className="fixed h-[100%] px-4 md:px-0 lg:px-0 inset-0 bg-opacity-25 bg-primary filter backdrop-blur-sm flex justify-center items-center"
+        className="fixed h-[100%] px-4 md:px-0 lg:px-0 inset-0 bg-opacity-25  filter backdrop-blur-sm flex justify-center items-center"
         style={{ fontFamily: "Inter" }}
       >
         <div className="w-[800px]">
@@ -85,7 +120,10 @@ const QuestionModal = ({ isVisible, onClose }) => {
               })}
             </div>
             <div className="flex justify-center lg:justify-end gap-3">
-              <button className="bg-[green] px-2 py-1 rounded-md text-slate hover:text-white hover:shadow-[green] hover:shadow-sm">
+              <button
+                onClick={() => handleRegister(selectedTopics)}
+                className="bg-[green] px-2 py-1 rounded-md text-slate hover:text-white hover:shadow-[green] hover:shadow-sm"
+              >
                 Submit
               </button>
               <button
@@ -96,6 +134,7 @@ const QuestionModal = ({ isVisible, onClose }) => {
               </button>
             </div>
           </div>
+          <Toaster />
         </div>
       </div>
     </>
