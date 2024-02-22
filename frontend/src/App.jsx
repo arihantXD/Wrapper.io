@@ -3,8 +3,8 @@ import Landing from "./Pages/Landing";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import HomeLayout from "./Pages/HomeLayout";
-
 import "./App.css";
+import Profile from "./Pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "home",
         element: <Landing />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "login",
