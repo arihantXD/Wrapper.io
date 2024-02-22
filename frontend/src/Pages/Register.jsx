@@ -13,8 +13,8 @@ const Register = () => {
     <div className="w-[100%] min-h-screen flex items-center filter backdrop-blur-lg">
       <div className="h-[500px] hidden md:block p-[20px] bg-primary rounded-l-md">
         <h3>Wrappers.io</h3>
-        <h3 className="mt-[70px] text-center">Welcome Back</h3>
-        <p className="mt-[40px] text-center">
+        <h3 className="mt-[70px]">Welcome Back</h3>
+        <p className="mt-[40px]">
           Already a member? Click on the button below to login.
         </p>
         <div className="mt-[70px] text-center">
