@@ -5,7 +5,7 @@ export default {
     colors: {
       pink: "#f87d7d",
       bg: "#F9FBE7",
-      black: "#191717",
+      black: "#3C3633",
       grey: "#F0EDD4",
       darkGrey: "#ddd",
       bg_primary: "#F9FBE7",

@@ -33,7 +33,7 @@ const Login = () => {
 
   return (
     <div className="h-[100vh] flex items-center w-[100%] bg-bg">
-      <div className=" xs:w-[90%] glass-bg lg:flex-col lg:justify-center flex min-h-[500px]  h-[80%] w-[80%] mx-auto ">
+      <div className=" xs:w-[90%] glass-bg lg:flex-col lg:justify-center flex min-h-[500px] max-h-[600px]  h-[80%] w-[80%] mx-auto ">
         <div className="lg:hidden w-[55%] my-auto px-[15px] ">
           <h3 className="text-center text-pink">Wrappers.io</h3>
           <img

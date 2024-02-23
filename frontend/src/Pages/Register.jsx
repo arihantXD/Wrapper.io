@@ -16,26 +16,26 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const checkPassword = () => {
-    if (!name || !email || !password || !confirmPassword) {
-      toast.error("Some fields are empty.", {
-        duration: 1500,
-        position: "bottom-center",
-      });
-      return false;
-    }
-    if (password !== confirmPassword) {
-      toast.error("Password not matched.", {
-        duration: 1500,
-        position: "bottom-center",
-      });
-      return false;
-    }
+    // if (!name || !email || !password || !confirmPassword) {
+    //   toast.error("Some fields are empty.", {
+    //     duration: 1500,
+    //     position: "bottom-center",
+    //   });
+    //   return false;
+    // }
+    // if (password !== confirmPassword) {
+    //   toast.error("Password not matched.", {
+    //     duration: 1500,
+    //     position: "bottom-center",
+    //   });
+    //   return false;
+    // }
     return true;
   };
 
   return (
     <div className="min-h-[100%] flex items-center w-[100%] bg-bg lg:py-[30px]">
-      <div className="lg:min-h-[100%] xs:w-[90%] glass-bg lg:flex-col lg:justify-center lg:py-[30px] flex min-h-[500px] max-h-[900px] h-[80%] w-[80%] mx-auto ">
+      <div className="lg:min-h-[100%] xs:w-[90%] glass-bg lg:flex-col lg:justify-center lg:py-[30px] flex min-h-[500px]  h-[80%] w-[80%] mx-auto ">
         <div className="lg:hidden w-[55%] my-auto px-[15px] border-r-[2px] border-pink">
           <h3 className="text-center text-pink">Wrappers.io</h3>
           <img
@@ -95,6 +95,14 @@ const Register = () => {
             <Link to="/login">
               <SecondaryButton text="Login" />
             </Link>
+            <QuestionModal
+              isVisible={showModal}
+              name={name}
+              email={email}
+              password={password}
+              confirmPassword={confirmPassword}
+              onClose={() => setShowModal(false)}
+            ></QuestionModal>
           </div>
 
           <p className="hidden lg:block lg:mt-[40px] text-black text-center text-sm">
@@ -107,12 +115,3 @@ const Register = () => {
   );
 };
 export default Register;
-
-// <QuestionModal
-//   isVisible={showModal}
-//   name={name}
-//   email={email}
-//   password={password}
-//   confirmPassword={confirmPassword}
-//   onClose={() => setShowModal(false)}
-// ></QuestionModal>

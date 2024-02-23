@@ -3,7 +3,7 @@ function Navbar() {
   return (
     <>
       <div
-        className="bg-primary px-4 py-4 flex justify-between items-center"
+        className="bg-pink px-4 py-4 flex justify-between items-center"
         style={{ fontFamily: "Inter" }}
       >
         <div className="text-xl text-slate">Wrappers.IO</div>

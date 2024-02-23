@@ -8,6 +8,7 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   max-width: 1600px;
+  color: "#191717";
   margin-inline: auto;
   font-weight: false;
   line-height: 1.65;
