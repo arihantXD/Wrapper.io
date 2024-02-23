@@ -1,4 +1,4 @@
 const Logo = () => {
-  return <h4 className="text-primary">Wrappers.io</h4>;
+  return <h4 className="text-[#FEA1A1]">Wrappers.io</h4>;
 };
 export default Logo;

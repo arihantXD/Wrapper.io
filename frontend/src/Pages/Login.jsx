@@ -1,4 +1,4 @@
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Logo,
   PrimaryButton,
@@ -6,13 +6,14 @@ import {
   SecondaryButton,
 } from "../Components";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const handleLogin = async (email, password) => {
     const data = { email, password };
     try {
@@ -21,59 +22,69 @@ const Login = () => {
         duration: 1500,
         position: "bottom-center",
       });
-      navigate("/home");
-      // return redirect("/landing");
+      return navigate("/home");
     } catch (error) {
-      console.log(error.response);
-      toast.error("Internal server error.", {
+      toast.error(error?.response?.data?.message, {
         duration: 1500,
         position: "bottom-center",
       });
     }
   };
+
   return (
-    <div className="h-[100vh] w-[100%]  flex items-center">
-      <div className="h-[500px] hidden md:block p-[20px] bg-primary rounded-l-md">
-        <h3>Wrappers.io</h3>
-        <h3 className="mt-[70px] text-center">Welcome</h3>
-        <p className="mt-[40px] text-center">
-          Here for the first time? Click on the button below to register.
-        </p>
-        <div className="mt-[70px] text-center">
-          <Link to="/register">
-            <SecondaryButton text="Register" />
-          </Link>
+    <div className="h-[100vh] flex items-center w-[100%] bg-bg">
+      <div className=" xs:w-[90%] glass-bg lg:flex-col lg:justify-center flex min-h-[500px]  h-[80%] w-[80%] mx-auto ">
+        <div className="lg:hidden w-[55%] my-auto px-[15px] ">
+          <h3 className="text-center text-pink">Wrappers.io</h3>
+          <img
+            className="xl:h-[280px] xl:w-[400px] w-[500px] mx-auto h-[350px]"
+            src="/Podcast_Main.svg"
+            alt=""
+          />
+          <p className="text-black text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nam
+            incidunt commodi iusto eos quia magnam quod officiis ut distinctio.
+          </p>
+        </div>
+        <div className="lg:hidden border-r-[2px] border-pink h-[80%] my-auto"></div>
+        <div className="lg:border-t-[3px] lg:border-pink lg:mx-auto lg:py-[40px] lg:w-[100%] w-[45%] flex flex-col justify-center items-center">
+          <div className="lg:w-[100%] w-[90%] mx-auto lg:px-[15px] flex flex-col items-center gap-[15px]">
+            <h4 className="text-center text-pink">Wrappers.io</h4>
+            <span className="text-sm text-center mb-[10px]">
+              Personalized Podcasts In Minutes
+            </span>
+            <PrimaryFormInput
+              type="email"
+              width="70%"
+              name="email"
+              placeholder="Enter your email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <PrimaryFormInput
+              type="password"
+              name="name"
+              placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </div>
+          <div className=" mt-[40px] flex gap-[20px]">
+            <PrimaryButton
+              text="Login"
+              onClick={() => handleLogin(email, password)}
+            />
+            <Link to="/register">
+              <SecondaryButton text="Register" />
+            </Link>
+          </div>
+
+          <p className="hidden lg:block lg:mt-[40px] text-black text-center text-sm">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nam
+            incidunt commodi iusto eos quia magnam quod officiis ut distinctio.
+          </p>
         </div>
       </div>
-      <div className="md:h-[500px] md:w-[70%] px-[10px] w-[90%] mx-auto min-w-[350px]  py-[50px]  md:rounded-l-md">
-        <div className="text-center">
-          <Logo />
-        </div>
-        <h3 className="mt-[10px] font-medium text-center">Login</h3>
-        <div className="mt-[40px] flex flex-col items-center gap-[15px]">
-          <PrimaryFormInput
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-          <PrimaryFormInput
-            type="password"
-            name="name"
-            placeholder="Enter your password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-        </div>
-        <div className="text-center mt-[50px]">
-          <PrimaryButton
-            text="Login"
-            onClick={() => handleLogin(email, password)}
-          />
-        </div>
-      </div>
-      <Toaster />
     </div>
   );
 };

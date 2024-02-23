@@ -7,7 +7,7 @@ import {
   SecondaryButton,
 } from "../Components";
 import { QuestionModal } from "../Components";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const Register = () => {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
@@ -34,75 +34,85 @@ const Register = () => {
   };
 
   return (
-    <div className="w-[100%] min-h-screen flex items-center filter backdrop-blur-lg">
-      <div className="h-[500px] hidden md:block p-[20px] bg-primary rounded-l-md">
-        <h3>Wrappers.io</h3>
-        <h3 className="mt-[70px]">Welcome Back</h3>
-        <p className="mt-[40px]">
-          Already a member? Click on the button below to login.
-        </p>
-        <div className="mt-[70px] text-center">
-          <Link to="/login">
-            <SecondaryButton text="Login" />
-          </Link>
+    <div className="min-h-[100%] flex items-center w-[100%] bg-bg lg:py-[30px]">
+      <div className="lg:min-h-[100%] xs:w-[90%] glass-bg lg:flex-col lg:justify-center lg:py-[30px] flex min-h-[500px] max-h-[900px] h-[80%] w-[80%] mx-auto ">
+        <div className="lg:hidden w-[55%] my-auto px-[15px] border-r-[2px] border-pink">
+          <h3 className="text-center text-pink">Wrappers.io</h3>
+          <img
+            className="xl:h-[280px] xl:w-[400px] w-[500px] mx-auto h-[350px]"
+            src="/Podcast_Main.svg"
+            alt=""
+          />
+          <p className="text-black text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nam
+            incidunt commodi iusto eos quia magnam quod officiis ut distinctio.
+          </p>
+        </div>
+        <div className="lg:border-t-[3px] lg:border-pink lg:mx-auto lg:py-[30px] lg:w-[100%] w-[45%] flex flex-col justify-center items-center">
+          <div className="lg:w-[100%] w-[90%] mx-auto lg:px-[15px] flex flex-col items-center gap-[15px]">
+            <h4 className="text-center text-pink">Wrappers.io</h4>
+            <span className="text-sm text-center mb-[10px]">
+              Personalized Podcasts In Minutes
+            </span>
+            <PrimaryFormInput
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+            <PrimaryFormInput
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <PrimaryFormInput
+              type="password"
+              name="name"
+              placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            <PrimaryFormInput
+              type="password"
+              name="name"
+              placeholder="Confirm your password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={confirmPassword}
+              required
+            />
+          </div>
+          <div className=" mt-[40px] flex gap-[20px]">
+            <PrimaryButton
+              text="Register"
+              onClick={() => {
+                const result = checkPassword();
+                if (result) setShowModal(true);
+              }}
+            />
+            <Link to="/login">
+              <SecondaryButton text="Login" />
+            </Link>
+          </div>
+
+          <p className="hidden lg:block lg:mt-[40px] text-black text-center text-sm">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nam
+            incidunt commodi iusto eos quia magnam quod officiis ut distinctio.
+          </p>
         </div>
       </div>
-      <div className="md:w-[70%] px-[10px] w-[90%] mx-auto min-w-[350px]  py-[50px]  md:rounded-l-md">
-        <div className="text-center">
-          <Logo />
-        </div>
-        <h3 className="mt-[10px] font-medium text-center">Create Account</h3>
-        <div className="mt-[40px] flex flex-col items-center gap-[15px]">
-          <PrimaryFormInput
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-          <PrimaryFormInput
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-          <PrimaryFormInput
-            type="password"
-            name="name"
-            placeholder="Enter your password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-          <PrimaryFormInput
-            type="password"
-            name="name"
-            placeholder="Confirm your password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            value={confirmPassword}
-            required
-          />
-        </div>
-        <div className="text-center mt-[50px]">
-          <PrimaryButton
-            onClick={() => {
-              const result = checkPassword();
-              if (result) setShowModal(true);
-            }}
-            text="Register"
-          />
-        </div>
-        <Toaster />
-      </div>
-      <QuestionModal
-        isVisible={showModal}
-        name={name}
-        email={email}
-        password={password}
-        confirmPassword={confirmPassword}
-        onClose={() => setShowModal(false)}
-      ></QuestionModal>
     </div>
   );
 };
 export default Register;
+
+// <QuestionModal
+//   isVisible={showModal}
+//   name={name}
+//   email={email}
+//   password={password}
+//   confirmPassword={confirmPassword}
+//   onClose={() => setShowModal(false)}
+// ></QuestionModal>

@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   max-width: 1600px;
   margin-inline: auto;
   font-weight: false;
@@ -25,14 +25,14 @@ h4,
 h5,
 small,
 .text-caption {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: true;
   line-height: 1.15;
 }
 
 h1,
 .text-size-h1 {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   margin-top: 0;
   font-size: 3.05em;
@@ -65,4 +65,13 @@ h5,
 small,
 .text-small {
   font-size: 0.64em;
+}
+
+.glass-bg {
+  background: rgba(240, 237, 212, 0.44);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.1px);
+  -webkit-backdrop-filter: blur(3.1px);
+  border: 1px solid rgba(240, 237, 212, 0.04);
 }

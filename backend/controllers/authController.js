@@ -1,24 +1,15 @@
 import User from "../models/userModel.js";
-import asyncHandler from "express-async-handler";
 import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 import { StatusCodes } from "http-status-codes";
 import { createJWT } from "../utils/tokenUtils.js";
+import {
+  BadRequestError,
+  UnauthenticatedError,
+} from "../errors/customErrors.js";
 
-export const register = asyncHandler(async (req, res) => {
+export const register = async (req, res) => {
   const { name, email, password, selectedTopics } = req.body;
-  console.log(selectedTopics);
-  if (!name || !email || !password) {
-    res.status(StatusCodes.BAD_REQUEST);
-    throw new Error("Some input fields are empty.");
-  }
   req.body.password = await hashPassword(password);
-
-  const userExists = await User.findOne({ email });
-
-  if (userExists) {
-    res.status(StatusCodes.BAD_REQUEST);
-    throw new Error("User with same email exists.");
-  }
 
   const user = await User.create({
     name,
@@ -26,41 +17,26 @@ export const register = asyncHandler(async (req, res) => {
     password: req.body.password,
     interest: selectedTopics,
   });
-  if (user) {
-    res.status(StatusCodes.CREATED).json({
-      name: user.name,
-      email: user.email,
-      interest: user.interest,
-    });
-  } else {
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ msg: "Internal server error." });
-  }
-});
+  res.status(StatusCodes.CREATED).json({ message: "User registered." });
+};
 
-export const login = asyncHandler(async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
-
-  if (!email || !password) {
-    res.status(StatusCodes.BAD_REQUEST);
-    throw new Error("Some input fields are empty.");
-  }
-
+  console.log(email);
+  console.log(password);
   const userExist = await User.findOne({ email });
 
   if (!userExist) {
-    res.status(StatusCodes.BAD_REQUEST);
-    throw new Error("User does not exist.");
+    throw new BadRequestError("User does not exist.");
   }
 
-  const validatePassword = comparePassword(password, userExist.password);
+  const validatePassword = await comparePassword(password, userExist.password);
+  console.log(validatePassword);
   if (!validatePassword) {
-    res.status(StatusCodes.BAD_REQUEST);
-    throw new Error("Invalid credentials.");
+    throw new UnauthenticatedError("Invalid credentials.");
   }
 
-  const token = createJWT({ _id: userExist._id, user: userExist.name });
+  const token = createJWT({ id: userExist._id, user: userExist.name });
 
   res.cookie("token", token, {
     httpOnly: true,
@@ -68,5 +44,5 @@ export const login = asyncHandler(async (req, res) => {
     secure: process.env.NODE_ENV === "production",
   });
 
-  res.status(StatusCodes.OK).json({ msg: "User logged in." });
-});
+  res.status(StatusCodes.OK).json({ message: "User logged in." });
+};

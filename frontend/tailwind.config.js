@@ -3,29 +3,32 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
+      pink: "#f87d7d",
+      bg: "#F9FBE7",
+      black: "#191717",
+      grey: "#F0EDD4",
+      darkGrey: "#ddd",
+      bg_primary: "#F9FBE7",
       primary: "#FD5F07",
-      // secondary: "#ecc94b",
       white: "#FFF",
-      danger: "#dc2626",
+      danger: "#FF8372",
       slate: "#e2e8f0",
       secondary: "#C84802",
     },
     screens: {
-      sm: "640px",
-      // => @media (min-width: 640px) { ... }
+      "2xl": { max: "1535px" },
 
-      md: "768px",
-      // => @media (min-width: 768px) { ... }
+      xl: { max: "1279px" },
 
-      lg: "1024px",
-      // => @media (min-width: 1024px) { ... }
+      lg: { max: "1000px" },
 
-      xl: "1280px",
-      // => @media (min-width: 1280px) { ... }
+      md: { max: "767px" },
 
-      "2xl": "1536px",
-      // => @media (min-width: 1536px) { ... }
+      sm: { max: "639px" },
+
+      xs: { max: "430px" },
     },
   },
   plugins: [],
 };
+// F9FBE7 F0EDD4

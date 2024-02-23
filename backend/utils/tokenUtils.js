@@ -5,3 +5,8 @@ export const createJWT = (payload) => {
     expiresIn: process.env.EXPIRES_IN,
   });
 };
+
+export const verifyJWT = (token) => {
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  return decoded;
+};
