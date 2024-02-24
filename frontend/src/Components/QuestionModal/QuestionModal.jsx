@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useEffect, useId, useState } from "react";
+
+import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronLeft } from "react-icons/fa6";
+import { FaBookOpen } from "react-icons/fa";
 import { redirect } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import TopicList from "../TopicList";
 
 const QuestionModal = ({
   isVisible,
@@ -40,148 +45,122 @@ const QuestionModal = ({
     return null;
   }
   const [selectedTopics, setSelectedTopics] = useState([]);
+  const [page, setPage] = useState(0);
   const category = [
     {
-      categoryName: "General Info",
-      topic: ["Machine Learning", "AI", "Web", "Android", "UI/UX", "Cloud"],
+      categoryName: "News & Politics",
+      topic: [
+        "crime",
+        "business",
+        "current events",
+        "Political talk shows",
+        "National/International news",
+        "current",
+      ],
     },
-    // {
-    //   categoryName: "Technical",
-    //   topic: ["Machine Learning", "AI", "Web", "Android", "UI/UX", "Cloud"],
-    // },
-    // {
-    //   categoryName: "Meditatio",
-    //   topic: ["Machine Learning", "AI", "Web", "Android", "UI/UX", "Cloud"],
-    // },
-    // {
-    //   categoryName: "Heath Care",
-    //   topic: ["Machine Learning", "AI", "Web", "Android", "UI/UX", "Cloud"],
-    // },
+    {
+      categoryName: "Comedy",
+      topic: [" standup comedy", "sketch comedy", "dark comedy"],
+    },
+    {
+      categoryName: "Education & Learning",
+      topic: [
+        "Programming",
+        "Professional Development",
+        "Life skills",
+        "lectures & Courses",
+        "Finance",
+        "Technology",
+        "Business",
+      ],
+    },
+    {
+      categoryName: "Entertaining & Leisure",
+      topic: ["Gaming", "Social Media", "Gadgets"],
+    },
+    {
+      categoryName: "Storytelling",
+      topic: [
+        "Fiction",
+        "Non-fiction",
+        "Horror and Thriller",
+        "Mythology and Folklore",
+        "Supernatural and Paranormal",
+      ],
+    },
+    {
+      categoryName: "Health & Fitness",
+      topic: [
+        "Outdoor activities",
+        "Trying new foods",
+        "Playing sports",
+        "Fitness",
+        "Healthy eating",
+      ],
+    },
+
+    {
+      categoryName: "Lifestyle & Relationships",
+      topic: ["Sustainable fashion", "Clothing trends", "Makeup"],
+    },
+
+    {
+      categoryName: "True Stories & Personal narratives",
+      topic: ["Documentaries", "Investigation", "Interviews"],
+    },
   ];
-  function handleSelection(e, topic) {
-    if (!selectedTopics.find((element) => element === topic)) {
-      setSelectedTopics([...selectedTopics, topic]);
-      e.currentTarget.className =
-        "bg-[green] w-[200px] py-2 text-center rounded-md text-slate flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white";
-      e.currentTarget.firstElementChild.firstElementChild.setAttribute(
-        "d",
-        "M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1-.75-.75Z"
-      );
-    } else {
-      setSelectedTopics(selectedTopics.filter((element) => element !== topic));
-      e.currentTarget.className =
-        "bg-primary w-[200px] py-2 text-center rounded-md text-slate flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white";
-      e.currentTarget.firstElementChild.firstElementChild.setAttribute(
-        "d",
-        "M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-      );
-    }
-  }
+
+  // useEffect(() => {
+  //   setPage(prev=>prev+1)
+  // }, [selectedTopics]);
+
   return (
     <>
       <div className="fixed w-[100%] h-[100%] inset-0 bg-opacity-25  filter backdrop-blur-sm flex justify-center items-center">
         <div className="w-[100%] h-[100%] bg-bg  rounded">
-          <div className="p-[30px]">
-            <div className="flex flex-col gap-2 mt-2 mb-2 md:mb-4 lg:mb-6">
-              <h3 className="text-pink">Wrappers.io</h3>
-              <span className="text-base font-normal">
-                Please select your interests from the below mentioned
-                categories.
-              </span>
+          <div className="w-[100%] mt-[20px]">
+            <div className=" gap-[15px]">
+              <TopicList
+                page={page}
+                category={category}
+                selectedTopics={selectedTopics}
+              />
             </div>
-            <div className="w-[100%] flex gap-2 flex-wrap justify-center mb-4">
-              {category.map((category, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex flex-col gap-4 text-md font-medium text-black"
-                  >
-                    <div>{category.categoryName}</div>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {category.topic.map((topic, index) => {
-                        return (
-                          <button
-                            key={index}
-                            onClick={(e) => {
-                              handleSelection(e, topic);
-                            }}
-                            className="bg-pink px-[20px] py-2 text-center rounded-md text-white text-xs flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="white"
-                              className="w-[16px] h-[16px] "
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>{topic}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
+            <div className="mt-[70px] flex justify-center items-end text-black ">
+              <FaBookOpen size={200} />
             </div>
-            <div className="w-[100%] flex gap-2 flex-wrap justify-center mb-4">
-              {category.map((category, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex flex-col gap-4 text-md font-medium text-black"
-                  >
-                    <div>{category.categoryName}</div>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {category.topic.map((topic, index) => {
-                        return (
-                          <button
-                            key={index}
-                            onClick={(e) => {
-                              handleSelection(e, topic);
-                            }}
-                            className="bg-grey px-[20px] py-2 text-center rounded-md text-white text-xs flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="white"
-                              className="w-[16px] h-[16px] "
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>{topic}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex justify-center lg:justify-end gap-3">
-              <button
-                onClick={() => handleRegister(selectedTopics)}
-                className="bg-pink px-2 py-1 rounded-md text-slate hover:text-white hover:shadow-[green] hover:shadow-sm"
+            <div className="mt-[0px] flex items-center justify-between px-[50px] ">
+              <div
+                onClick={() => {
+                  if (page === category.length - 1) {
+                    return;
+                  }
+                  setPage((prev) => prev + 1);
+                }}
+                className={`${
+                  page === category.length - 1 && "bg-[#ddd]"
+                } flex items-center gap-[5px] bg-pink px-[15px] py-[7px] rounded`}
               >
-                Submit
-              </button>
-              <button
-                onClick={onClose}
-                className="bg-danger px-2 py-1 rounded-md text-slate hover:text-white hover:shadow-danger hover:shadow-sm"
+                <FaChevronLeft />
+                <h4 className="">Prev </h4>
+              </div>
+              <div
+                onClick={() => {
+                  if (page === category.length - 1) {
+                    return;
+                  }
+                  setPage((prev) => prev + 1);
+                }}
+                className={`${
+                  page === category.length - 1 && "bg-[#ddd]"
+                } flex items-center gap-[5px] bg-pink px-[15px] py-[7px] rounded`}
               >
-                Cancel
-              </button>
+                <h4 className="">Next </h4>
+                <FaChevronRight />
+              </div>
             </div>
           </div>
+
           <Toaster />
         </div>
       </div>

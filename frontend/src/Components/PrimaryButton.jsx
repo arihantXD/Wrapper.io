@@ -8,7 +8,7 @@ const Button = ({ text, onClick, width }) => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`bg-pink text-[white] font-medium px-[50px] py-[7px] rounded-3xl w-[150px] w-${width}`}
+        className={`bg-pink text-[white] font-medium px-[15px] py-[7px] rounded-3xl w-[150px] w-${width}`}
         onClick={onClick}
       >
         {isSubmitting ? "Submitting" : text}
