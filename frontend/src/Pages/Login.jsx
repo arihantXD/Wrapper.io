@@ -5,34 +5,68 @@ import {
   PrimaryFormInput,
   SecondaryButton,
 } from "../Components";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Navbar from "../Components/Navbar/Navbar";
+import { myContext } from "../App";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const user = localStorage.getItem("localUser");
+    if (user) navigate("/");
+  }, []);
+
+  const localUser = [
+    {
+      name: "yoshita",
+      email: "yoshi@gmail.com",
+      password: "yoshi",
+      profession: "student",
+      interest: "",
+      gender: "Female",
+      age: "18",
+      dateOfBirth: "01/01/1999",
+    },
+    {
+      name: "akansha",
+      email: "ak@gmail.com",
+      password: "akansha",
+      profession: "rocket scientist",
+      interest: "",
+      gender: "Female",
+      age: "40",
+      dateOfBirth: "01/01/1999",
+    },
+  ];
   const handleLogin = async (email, password) => {
     const data = { email, password };
+    if (!email || !password) {
+      toast.error("Some fields are empty.", {
+        duration: 1500,
+        position: "bottom-center",
+      });
+      return false;
+    }
     try {
-      const result = await axios.post("/api/auth/login", data);
+      const used = email === "yoshi@gmail.com" ? localUser[0] : localUser[1];
+      localStorage.setItem("localUser", JSON.stringify(used));
       toast.success("User logged in successfully.", {
         duration: 1500,
         position: "bottom-center",
       });
-      return navigate("/home");
+      return navigate("/product");
     } catch (error) {
       toast.error(error?.response?.data?.message, {
-        duration: 1500,
+        duration: 5000,
         position: "bottom-center",
       });
     }
   };
-  // <div id="background-wrap">
-
-  // </div>;
 
   return (
     <>

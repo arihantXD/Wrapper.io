@@ -3,7 +3,7 @@ import { useEffect, useId, useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import TopicList from "../TopicList";
@@ -17,22 +17,26 @@ const QuestionModal = ({
   confirmPassword,
 }) => {
   const handleRegister = async (selectedTopics) => {
-    if (selectedTopics.length === 0) {
-      toast.error("Select some topics.", {
-        duration: 1500,
-        position: "bottom-center",
-      });
-      return;
-    }
-    const data = { name, email, password, selectedTopics };
+    // if (selectedTopics.length === 0) {
+    //   toast.error("Select some topics.", {
+    //     duration: 1500,
+    //     position: "bottom-center",
+    //   });
+    //   return;
+    // }
+    const data = {
+      name,
+      email,
+      password,
+      selectedTopics,
+    };
     try {
-      const result = await axios.post("/api/auth/register", data);
       toast.success("User registered, please login.", {
         duration: 1500,
         position: "bottom-center",
       });
       onClose();
-      return redirect("/login");
+      return redirect("/");
     } catch (error) {
       toast.error("Internal server error.", {
         duration: 1500,
@@ -152,19 +156,6 @@ const QuestionModal = ({
                 <h4 className="">Prev </h4>
               </div>
 
-              {/* <div className="flex text-sm flex-wrap">
-                {selectedTopics.map((topic) => {
-                  return (
-                    <button
-                      key={parseInt(Math.random() * 10000)}
-                      className={` bg-grey px-[20px] py-2 text-center rounded-md text-white text-xs flex justify-center gap-2 `}
-                      onClick={(e) => handleSelection(t, e)}
-                    >
-                      <span>{topic}</span>
-                    </button>
-                  );
-                })}
-              </div> */}
               <div
                 onClick={() => {
                   if (page === category.length - 1) {
@@ -224,7 +215,10 @@ const QuestionModal = ({
                     );
                   })}
                 </div>
-                <div className=" flex gap-[5px] absolute  bottom-[20px]  right-[20px] bg-pink px-[15px] py-[5px] rounded-xl">
+                <div
+                  onClick={() => handleRegister()}
+                  className=" flex gap-[5px] absolute  bottom-[20px]  right-[20px] bg-pink px-[15px] py-[5px] rounded-xl"
+                >
                   <h4>Lets Start</h4>
                   <button className="">
                     <FaChevronRight size={25} />

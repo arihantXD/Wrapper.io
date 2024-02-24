@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import YTVideoInput from "../Components/YTvideoInput";
 import VideoTranscriptInput from "../Components/VideoTranscriptInput";
 import AudioFileInput from "../Components/AudioFileInput";
 import Navbar from "../Components/Navbar/Navbar";
+import { myContext } from "../App";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Product = () => {
+  const navigate = useNavigate();
   const [inputType, setInputType] = useState("ytVideo");
+  const { user, setUser } = useContext(myContext);
   return (
     <div
       className="w-[100%] h-[100%] bg-darkThemePrimary overflow-hidden"

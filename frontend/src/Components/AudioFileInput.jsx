@@ -24,12 +24,7 @@ const AudioFileInput = () => {
           </div>
         </div>
         <div className="flex justify-center mt-3 h-96">
-          <video
-            src="/AudioFile.mp4"
-            autoPlay
-            muted
-            className="rounded-lg outline outline-2 outline-darkThemeSecondary"
-          ></video>
+          <video src="/AudioFile.mp4" autoPlay muted className=""></video>
         </div>
       </div>
     </div>

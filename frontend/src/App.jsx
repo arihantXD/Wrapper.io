@@ -45,8 +45,15 @@ const router = createBrowserRouter([
   },
 ]);
 
+import { createContext, useState } from "react";
+export const myContext = createContext();
 function App() {
-  return <RouterProvider router={router} />;
+  const [user, setUser] = useState();
+  return (
+    <myContext.Provider value={{ user, setUser }}>
+      <RouterProvider router={router} />
+    </myContext.Provider>
+  );
 }
 
 export default App;

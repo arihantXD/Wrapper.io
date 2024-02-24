@@ -13,7 +13,7 @@ const VideoTranscriptInput = () => {
             <input
               type="text"
               placeholder="Video Transcript"
-              className={`w-[400px] h-[30px] bg-[slate] 
+              className={`w-[600px] h-[30px] bg-[slate] 
             px-[10px] py-[15px] text-black border-[2px] border-darkThemeSecondary rounded-lg text-normal focus:outline focus:outline-primary focus:outline-2 focus:border-none`}
             />
             <button
@@ -25,12 +25,7 @@ const VideoTranscriptInput = () => {
           </div>
         </div>
         <div className="flex justify-center mt-3 h-96">
-          <video
-            src="/VideoTranscript.mp4"
-            autoPlay
-            muted
-            className="rounded-lg outline outline-2 outline-darkThemeSecondary"
-          ></video>
+          <video src="/VideoTranscript.mp4" autoPlay muted className=""></video>
         </div>
       </div>
     </div>
