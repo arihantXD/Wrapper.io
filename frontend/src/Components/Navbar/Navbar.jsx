@@ -51,6 +51,7 @@ function Navbar() {
               <span>Home</span>
             </Link>
             <Link
+              to="/product"
               className={
                 location.pathname === "/product"
                   ? "flex gap-1 text-primary relative after:bg-primary after:absolute after:h-1 after:bottom-0 after:top-[26px] after:left-1 after:rounded-lg after:w-full"

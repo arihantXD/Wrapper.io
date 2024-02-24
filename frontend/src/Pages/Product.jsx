@@ -2,35 +2,44 @@ import { useState } from "react";
 import YTVideoInput from "../Components/YTvideoInput";
 import VideoTranscriptInput from "../Components/VideoTranscriptInput";
 import AudioFileInput from "../Components/AudioFileInput";
+import Navbar from "../Components/Navbar/Navbar";
 
 const Product = () => {
-  const [inputType, setInputType] = useState("");
+  const [inputType, setInputType] = useState("ytVideo");
   return (
-    <div className="w-[100%] h-[100%] p-[20px] overflow-hidden">
+    <div
+      className="w-[100%] h-[100%] bg-darkThemePrimary overflow-hidden"
+      style={{ fontFamily: "Poppins" }}
+    >
+      <Navbar></Navbar>
       {/* <div>
         <h3 className="text-pink ">Wrappers.io</h3>
       </div> */}
-      <div className="mt-[50px] h-[100%] w-[100%] flex">
-        <div className="py-[20px] min-w-[350px] flex flex-col h-[85%] pr-[20px] border-r-[2px] border-pink [&>button]:p-[10px]  text-center [&>button]:my-[10px] [&>button]:rounded-xl [&>button]:w-[250px] [&>button]:bg-[#BBE2EC]">
-          <h4 className="text-black">Available types of inputs</h4>
-          <button
-            onClick={() => setInputType("ytVideo")}
-            className="hover:bg-[#0D9276] transition"
-          >
-            You Tube Video
-          </button>
-          <button
-            onClick={() => setInputType("videoTranscript")}
-            className="hover:bg-[#0D9276] transition"
-          >
-            Video Transcript
-          </button>
-          <button
-            onClick={() => setInputType("audioFile")}
-            className="hover:bg-[#0D9276] transition"
-          >
-            Audio File
-          </button>
+      <div className="pt-[10px] h-[100%] w-[100%] flex px-3 pb-5">
+        <div className="flex flex-col w-[350px] pt-5">
+          <h4 className="text-white mb-8 w-[100%] text-center border-primary border-r-2">
+            Available Inputs
+          </h4>
+          <div className="flex flex-col gap-8 items-center font-semibold border-r-2 border-primary h-[78%]">
+            <button
+              onClick={() => setInputType("ytVideo")}
+              className="w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+            >
+              YouTube Video
+            </button>
+            <button
+              onClick={() => setInputType("videoTranscript")}
+              className="w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+            >
+              Video Transcript
+            </button>
+            <button
+              onClick={() => setInputType("audioFile")}
+              className="w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+            >
+              Audio File
+            </button>
+          </div>
         </div>
         <div className="w-[70%]">
           {inputType === "ytVideo" && <YTVideoInput />}

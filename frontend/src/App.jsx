@@ -1,5 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Help, HomeLayout, Landing, Login, Profile, Register } from "./Pages";
+import {
+  Help,
+  HomeLayout,
+  Landing,
+  Login,
+  Profile,
+  Register,
+  Product,
+} from "./Pages";
 
 import "./App.css";
 
@@ -30,8 +38,8 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "help",
-        element: <Help />,
+        path: "product",
+        element: <Product />,
       },
     ],
   },
