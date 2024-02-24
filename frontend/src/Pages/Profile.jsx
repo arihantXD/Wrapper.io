@@ -5,6 +5,8 @@ import { PrimaryButton } from "../Components";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdEditOff } from "react-icons/md";
 import { useState } from "react";
+import { SecondaryButton } from "../Components";
+// import Navbar from "../Components/Navbar/Navbar";
 function Profile() {
   const [showModal, setShowModal] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -37,86 +39,88 @@ function Profile() {
 
   return (
     <>
-      <div className="bg-bg w-[100%] h-[100%] flex justify-center items-center">
-        <div className="relative glass-bg w-[80%] mx-auto h-[80%] p-[50px] pb-0">
+      <div className="bg-darkThemePrimary w-[100%] h-[100%] flex flex-col gap-8">
+        <Navbar></Navbar>
+        <div className="relative bg-darkThemeSecondary w-[80%] mx-auto h-[80%] p-[50px] pb-0 rounded-lg">
           <div className="flex justify-between">
-            <h3 className="text-pink">My details</h3>
+            <h3 className="text-primary">My Profile</h3>
             <div className="pr-[40px]" onClick={() => setEdit((prev) => !prev)}>
               {edit ? (
-                <MdEditOff className="text-pink" size={30} />
+                <MdEditOff className="text-primary" size={30} />
               ) : (
-                <MdOutlineEdit className="text-pink" size={30} />
+                <MdOutlineEdit className="text-primary" size={30} />
               )}
             </div>
           </div>
-          <div className="relative flex  flex-col items-center justify-between mt-[50px]">
-            <div className="flex gap-[15px] items-center justify-between w-[400px] my-[7px]">
-              <h5 className="text-black">Name</h5>
+          <div className="relative flex flex-col items-start justify-between mt-[50px]">
+            <div className="w-[100%] grid grid-cols-4 gap-[15px] items-center my-[7px]">
+              <h5 className="text-white">Name</h5>
               <input
                 type="text"
                 disabled={!edit}
                 className={`${
                   !edit
-                    ? "bg-[rgba(255,255,255,0.4) ]"
-                    : " bg-[rgba(255,255,255,1)]"
-                }  px-[10px] text-black border-[2px] border-grey rounded outline-none text-normal`}
+                    ? "bg-darkThemeSecondary text-white"
+                    : " bg-darkThemePrimary text-white"
+                } w-[100%] col-span-2 px-2 text-black text-normal border-b-2 rounded-lg border-primary focus:outline-0`}
                 defaultValue={data.Name}
               />
             </div>
-            <div className="flex gap-[15px] items-center justify-between w-[400px] my-[7px]">
-              <h5 className="text-black">Email</h5>
+            <div className="grid grid-cols-4 gap-[15px] items-center w-[100%] my-[7px]">
+              <h5 className="text-white">Email</h5>
               <input
                 type="email"
                 disabled={!edit}
                 className={`${
                   !edit
-                    ? "bg-[rgba(255,255,255,0.4) ]"
-                    : " bg-[rgba(255,255,255,1)]"
-                }  px-[10px] text-black border-[2px] border-grey rounded outline-none text-normal`}
+                    ? "bg-darkThemeSecondary text-white"
+                    : " bg-darkThemePrimary text-white"
+                } col-span-2 w-[100%] px-2 text-black text-normal border-b-2 border-primary rounded-lg focus:outline-0`}
                 defaultValue={data.Email}
               />
             </div>
-            <div className="flex gap-[15px] items-center justify-between w-[400px] my-[7px]">
-              <h5 className="text-black">Gender</h5>
+            <div className="w-[100%] grid grid-cols-4 gap-[15px] items-center my-[7px]">
+              <h5 className="text-white">Gender</h5>
               <input
                 type="text"
                 disabled={!edit}
                 className={`${
                   !edit
-                    ? "bg-[rgba(255,255,255,0.4) ]"
-                    : " bg-[rgba(255,255,255,1)]"
-                }  px-[10px] text-black border-[2px] border-grey rounded outline-none text-normal`}
+                    ? "bg-darkThemeSecondary text-white"
+                    : " bg-darkThemePrimary text-white"
+                } col-span-2 w-[100%] px-2 text-black text-normal border-b-2 border-primary rounded-lg focus:outline-0`}
                 defaultValue={data.Gender}
               />
             </div>
-            <div className="flex gap-[15px] items-center justify-between w-[400px] my-[7px]">
-              <h5 className="text-black">Birthday</h5>
+            <div className="w-[100%] grid grid-cols-4 gap-[15px] items-center my-[7px]">
+              <h5 className="text-white">Birthday</h5>
               <input
                 type="text"
                 disabled={!edit}
                 className={`${
                   !edit
-                    ? "bg-[rgba(255,255,255,0.4) ]"
-                    : " bg-[rgba(255,255,255,1)]"
-                }  px-[10px] text-black border-[2px] border-grey rounded outline-none text-normal`}
+                    ? "bg-darkThemeSecondary text-white"
+                    : " bg-darkThemePrimary text-white"
+                } col-span-2 w-[100%] px-2 text-black text-normal border-b-2 border-primary rounded-lg focus:outline-0`}
                 defaultValue={data.Birthday}
               />
             </div>
-            <div className="flex gap-[15px] items-center justify-between w-[400px] my-[7px]">
-              <h5 className="text-black">Profession</h5>
+            <div className="w-[100%] grid grid-cols-4 gap-[15px] items-center my-[7px]">
+              <h5 className="text-white">Profession</h5>
               <input
                 type="text"
                 disabled={!edit}
                 className={`${
                   !edit
-                    ? "bg-[rgba(255,255,255,0.4) ]"
-                    : " bg-[rgba(255,255,255,1)]"
-                }  px-[10px] text-black border-[2px] border-grey rounded outline-none text-normal`}
+                    ? "bg-darkThemeSecondary text-white"
+                    : " bg-darkThemePrimary text-white"
+                } col-span-2 w-[100%] px-2 text-black text-normal border-b-2 border-primary rounded-lg focus:outline-0`}
                 defaultValue={data.Profession}
               />
             </div>
-            <div className="mt-[30px]">
+            <div className="mt-[30px] flex gap-4">
               <PrimaryButton text="Update" />
+              <SecondaryButton text="Log Out"></SecondaryButton>
             </div>
           </div>
         </div>
