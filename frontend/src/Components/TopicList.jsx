@@ -8,17 +8,22 @@ const TopicList = ({ page, category, selectedTopics }) => {
     selectedTopics.push(() => topic);
   }
   return (
-    <div className="flex flex-col mt-[20px] px-[20px]">
-      <IoMdClose size={30} className=" text-pink" />
+    <div className="flex flex-col px-[20px]" style={{ fontFamily: "Poppins" }}>
+      <IoMdClose
+        size={30}
+        className=" text-white hover:text-primary cursor-pointer self-end"
+      />
       <div>
-        <h4 className="text-center">{category[page].categoryName}</h4>
+        <h4 className="text-center text-white">
+          {category[page].categoryName}
+        </h4>
       </div>
-      <div className="mt-[20px] flex flex-wrap justify-center gap-[15px]">
+      <div className="mt-[20px] grid grid-cols-4 gap-4">
         {category[page].topic.map((t) => {
           return (
             <button
               key={parseInt(Math.random() * 10000)}
-              className={` bg-primeColor px-[20px] py-2 text-center rounded-md text-white text-xs flex justify-center gap-2 `}
+              className={`bg-darkThemeSecondary px-[20px] w-[250px] py-2 text-center rounded-md text-white text-md flex justify-center gap-2 `}
               onClick={(e) => handleSelection(t, e)}
             >
               <span>{t}</span>
