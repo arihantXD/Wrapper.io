@@ -43,7 +43,7 @@ const QuestionModal = ({
   const category = [
     {
       categoryName: "General Info",
-      topic: ["Machine Learning", "AI", "Web", "Android", "UI/UX", "Cloud"],
+      topic: ["ML", "AI", "Web", "Android", "UI/UX", "Cloud"],
     },
     // {
     //   categoryName: "Technical",
@@ -80,11 +80,11 @@ const QuestionModal = ({
   return (
     <>
       <div className="fixed w-[100%] h-[100%] inset-0 bg-opacity-25  filter backdrop-blur-sm flex justify-center items-center">
-        <div className="w-[100%] h-[100%] bg-bg  rounded">
+        <div className="w-[100%] h-[100%] bg-[#334155]  rounded">
           <div className="p-[30px]">
             <div className="flex flex-col gap-2 mt-2 mb-2 md:mb-4 lg:mb-6">
-              <h3 className="text-pink">Wrappers.io</h3>
-              <span className="text-base font-normal">
+              <h3 className="text-primary">Wrappers.io</h3>
+              <span className="text-base font-normal text-white">
                 Please select your interests from the below mentioned
                 categories.
               </span>
@@ -105,7 +105,7 @@ const QuestionModal = ({
                             onClick={(e) => {
                               handleSelection(e, topic);
                             }}
-                            className="bg-pink px-[20px] py-2 text-center rounded-md text-white text-xs flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white"
+                            className="bg-pink px-[20px] py-2 text-nowrap text-center rounded-md text-white text-xs flex justify-center gap-2 hover:shadow-primary hover:shadow-sm hover:text-white"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

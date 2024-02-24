@@ -8,7 +8,7 @@ const SecondaryButton = ({ text, onClick }) => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className=" text-black border-[2px] border-darkGrey  font-medium px-[15px] py-[7px] rounded-3xl w-[150px]"
+        className=" text-white border-[2px] tracking-widest text-[20px] border-darkGrey font-medium px-[15px] py-[7px] rounded-3xl w-[150px]"
         onClick={onClick}
       >
         {isSubmitting ? "Submitting" : text}

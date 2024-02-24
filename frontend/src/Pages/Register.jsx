@@ -8,6 +8,7 @@ import {
 } from "../Components";
 import { QuestionModal } from "../Components";
 import toast from "react-hot-toast";
+import Navbar from "../Components/Navbar/Navbar";
 const Register = () => {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
@@ -34,24 +35,17 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-[100%] flex items-center w-[100%] bg-bg lg:py-[30px]">
-      <div className="lg:min-h-[100%] xs:w-[90%] glass-bg lg:flex-col lg:justify-center lg:py-[30px] flex min-h-[500px]  h-[80%] w-[80%] mx-auto ">
-        <div className="lg:hidden w-[55%] my-auto px-[15px] border-r-[2px] border-pink">
-          <h3 className="text-center text-pink">Wrappers.io</h3>
-          <img
-            className="xl:h-[280px] xl:w-[400px] w-[500px] mx-auto h-[350px]"
-            src="/Podcast_Main.svg"
-            alt=""
-          />
-          <p className="text-black text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nam
-            incidunt commodi iusto eos quia magnam quod officiis ut distinctio.
-          </p>
+    <div className="min-h-[100%] flex flex-col gap-6 w-[100%] bg-darkThemePrimary lg:py-[30px]">
+      <Navbar />
+      <div className="lg:rounded-xl lg:overflow-clip lg:min-h-[100%] xs:w-[90%] bg-darkThemeSecondary lg:justify-center lg:py-[30px] flex min-h-[500px]   h-[80%] w-[80%] mx-auto ">
+        <div className="register-login-sidebar lg:hidden lg:h-[100%] w-[55%] px-[15px] border-r-[2px] border-primary">
+          <span className="text-center text-primary text-5xl">Wrappers.io</span>
+          <div className="liquid w-100%"></div>
         </div>
-        <div className="lg:border-t-[3px] lg:border-pink lg:mx-auto lg:py-[30px] lg:w-[100%] w-[45%] flex flex-col justify-center items-center">
-          <div className="lg:w-[100%] w-[90%] mx-auto lg:px-[15px] flex flex-col items-center gap-[15px]">
-            <h4 className="text-center text-pink">Wrappers.io</h4>
-            <span className="text-sm text-center mb-[10px]">
+        <div className="w-[45%] my-2 ml-2 flex flex-col items-center">
+          <div className="flex flex-col gap-2 items-center w-[100%]">
+            <h4 className="text-center text-primary">Wrappers.io</h4>
+            <span className="text-sm text-white text-center mb-[10px]">
               Personalized Podcasts In Minutes
             </span>
             <PrimaryFormInput
@@ -83,10 +77,36 @@ const Register = () => {
               value={confirmPassword}
               required
             />
+            <PrimaryFormInput
+              type="text"
+              name="birthday"
+              placeholder="Date of Birth(MM/DD/YYYY)"
+              focus={true}
+              // onChange={(e) => setConfirmPassword(e.target.value)}
+              // value={confirmPassword}
+              required
+            />
+            <PrimaryFormInput
+              type="text"
+              name="profession"
+              placeholder="Profession"
+              // onChange={(e) => setConfirmPassword(e.target.value)}
+              // value={confirmPassword}
+              required
+            />
+            <PrimaryFormInput
+              type="text"
+              name="gender"
+              placeholder="Gender"
+              // onChange={(e) => setConfirmPassword(e.target.value)}
+              // value={confirmPassword}
+              required
+            />
           </div>
-          <div className=" mt-[40px] flex gap-[20px]">
+          <div className="flex gap-3 mt-3">
             <PrimaryButton
               text="Register"
+              activateAnimation={true}
               onClick={() => {
                 const result = checkPassword();
                 if (result) setShowModal(true);
@@ -95,22 +115,17 @@ const Register = () => {
             <Link to="/login">
               <SecondaryButton text="Login" />
             </Link>
-            <QuestionModal
-              isVisible={showModal}
-              name={name}
-              email={email}
-              password={password}
-              confirmPassword={confirmPassword}
-              onClose={() => setShowModal(false)}
-            ></QuestionModal>
           </div>
-
-          <p className="hidden lg:block lg:mt-[40px] text-black text-center text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nam
-            incidunt commodi iusto eos quia magnam quod officiis ut distinctio.
-          </p>
         </div>
       </div>
+      <QuestionModal
+        isVisible={showModal}
+        name={name}
+        email={email}
+        password={password}
+        confirmPassword={confirmPassword}
+        onClose={() => setShowModal(false)}
+      ></QuestionModal>
     </div>
   );
 };

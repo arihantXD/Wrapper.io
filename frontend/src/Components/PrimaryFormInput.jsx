@@ -5,6 +5,7 @@ const PrimaryInput = ({
   required,
   onChange,
   value,
+  focus,
 }) => {
   return (
     <>
@@ -14,10 +15,16 @@ const PrimaryInput = ({
         placeholder={placeholder}
         name={name}
         value={value}
+        onFocus={(e) => focus && (e.target.type = "date")}
+        onBlur={(e) => focus && (e.target.type = "text")}
         onChange={onChange}
         required
       />
     </>
   );
+};
+
+PrimaryInput.defaultProps = {
+  focus: false,
 };
 export default PrimaryInput;
