@@ -8,7 +8,7 @@ export default {
       darkThemeSecondary: "#334155",
       bg: "#F9FBE7",
       black: "#3C3633",
-      grey: "#F0EDD4",
+      grey: "#BBE2EC",
       darkGrey: "#ddd",
       bg_primary: "#F9FBE7",
       primary: "#FD5F07",
