@@ -1,3 +1,4 @@
+import { useDropdown } from "@mui/base";
 import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { myContext } from "../../App";
@@ -9,7 +10,11 @@ function Navbar() {
   return (
     <>
       <div
-        className="bg-darkThemeSecondary border-b-2 sticky border-primary shadow-primary shadow-md px-4 py-4 grid grid-cols-5 items-center"
+        className={
+          !user
+            ? "bg-darkThemeSecondary border-b-2 sticky border-primary shadow-primary shadow-md px-4 py-4 grid grid-cols-5 items-center"
+            : "bg-darkThemeSecondary border-b-2 sticky border-primary shadow-primary shadow-md px-4 py-4 grid grid-cols-12 items-center"
+        }
         style={{ fontFamily: "Poppins" }}
       >
         <Link
@@ -32,8 +37,14 @@ function Navbar() {
             O
           </span>
         </Link>
-        <div className="col-span-3 justify-self-end">
-          <ul className="flex gap-12 text-lg">
+        <div
+          className={
+            !user
+              ? "col-span-3 justify-self-end"
+              : "col-span-10 justify-self-end"
+          }
+        >
+          <ul className="flex gap-8 text-lg">
             <Link
               to="/"
               className={
@@ -77,7 +88,7 @@ function Navbar() {
           </ul>
         </div>
         <div
-          className="flex gap-4 justify-self-end"
+          className={`flex gap-4 justify-self-end ${!user ? "mr-5" : ""}`}
           style={{ fontFamily: "Poppins" }}
         >
           {!user && (
@@ -96,8 +107,8 @@ function Navbar() {
           )}
           {user && (
             <Link to="/profile">
-              <button className="bg-white font-semibold text-darkThemeSecondary rounded-full py-2 px-6 transition-all ease-in-out duration-400 hover:transition-all hover:ease-in-out hover:duration-400 hover:outline hover:outline-primary hover:bg-darkThemeSecondary hover:text-white">
-                {user.name}
+              <button className="bg-white text-xl font-semibold text-darkThemeSecondary rounded-full py-2 px-4 transition-all ease-in-out duration-400 hover:transition-all hover:ease-in-out hover:duration-400 hover:outline hover:outline-primary hover:bg-darkThemeSecondary hover:text-white">
+                {user.name.substring(0, 1).toUpperCase()}
               </button>
             </Link>
           )}

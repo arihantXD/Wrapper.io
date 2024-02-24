@@ -74,13 +74,18 @@ const Login = () => {
         <Navbar />
         <div className="rounded-xl overflow-clip xs:w-[90%] bg-darkThemeSecondary lg:flex-col flex min-h-[500px] h-[80%] w-[80%] mx-auto ">
           <div className="register-login-sidebar w-[55%]">
-            <span className="text-center text-white text-5xl">Wrappers.io</span>
+            <span
+              className="text-center text-white text-5xl"
+              style={{ textTransform: "none" }}
+            >
+              Wrappers.IO
+            </span>
             <div className="liquid"></div>
           </div>
           <div className="lg:hidden border-r-[2px] border-primary h-[100%] my-auto"></div>
           <div className="lg:border-t-[3px] lg:border-primary lg:mx-auto lg:py-[40px] lg:w-[100%] w-[45%] flex flex-col justify-center items-center">
             <div className="lg:w-[100%] w-[90%] mx-auto lg:px-[15px] flex flex-col items-center gap-[15px]">
-              <h4 className="text-center text-primary">Wrappers.io</h4>
+              <h4 className="text-center text-primary">Wrappers.IO</h4>
               <span className="text-sm text-white text-center mb-[10px]">
                 Personalized Podcasts In Minutes
               </span>

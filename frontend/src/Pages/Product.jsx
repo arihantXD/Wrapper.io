@@ -27,19 +27,31 @@ const Product = () => {
           <div className="flex flex-col gap-8 items-center font-semibold border-r-2 border-primary h-[78%]">
             <button
               onClick={() => setInputType("ytVideo")}
-              className="w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+              className={
+                inputType === "ytVideo"
+                  ? "w-[70%] transition py-2 text-black bg-white rounded-xl"
+                  : "w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+              }
             >
               YouTube Video
             </button>
             <button
               onClick={() => setInputType("videoTranscript")}
-              className="w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+              className={
+                inputType === "videoTranscript"
+                  ? "w-[70%] transition py-2 text-black bg-white rounded-xl"
+                  : "w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+              }
             >
               Video Transcript
             </button>
             <button
               onClick={() => setInputType("audioFile")}
-              className="w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+              className={
+                inputType === "audioFile"
+                  ? "w-[70%] transition py-2 text-black bg-white rounded-xl"
+                  : "w-[70%] transition py-2 text-white rounded-xl bg-darkThemePrimary hover:bg-white outline outline-2 outline-primary hover:text-darkThemePrimary hover:outline hover:outline-2 hover:outline-darkThemePrimary"
+              }
             >
               Audio File
             </button>

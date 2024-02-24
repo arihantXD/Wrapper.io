@@ -38,12 +38,17 @@ const Register = () => {
       <Navbar />
       <div className="lg:rounded-xl lg:overflow-clip lg:min-h-[100%] xs:w-[90%] bg-darkThemeSecondary lg:justify-center lg:py-[30px] flex min-h-[500px]   h-[80%] w-[80%] mx-auto ">
         <div className="register-login-sidebar lg:hidden lg:h-[100%] w-[55%] px-[15px] border-r-[2px] border-primary">
-          <span className="text-center text-primary text-5xl">Wrappers.io</span>
+          <span
+            className="text-center text-primary text-5xl"
+            style={{ textTransform: "none" }}
+          >
+            Wrappers.IO
+          </span>
           <div className="liquid w-100%"></div>
         </div>
         <div className="w-[45%] my-2 ml-2 flex flex-col items-center">
           <div className="flex flex-col gap-2 items-center w-[100%]">
-            <h4 className="text-center text-primary">Wrappers.io</h4>
+            <h4 className="text-center text-primary">Wrappers.IO</h4>
             <span className="text-sm text-white text-center mb-[10px]">
               Personalized Podcasts In Minutes
             </span>
