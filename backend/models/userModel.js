@@ -16,6 +16,15 @@ const userSchema = new mongoose.Schema({
   interest: {
     type: [],
   },
+  dateOfBirth: {
+    type: String,
+  },
+  profession: {
+    type: String,
+  },
+  Gender: {
+    type: String,
+  },
 });
 
 export default mongoose.model("User", userSchema);
