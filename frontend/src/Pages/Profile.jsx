@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import QuestionModal from "../Components/QuestionModal/QuestionModal";
 import { PrimaryButton } from "../Components";
@@ -7,9 +7,14 @@ import { MdEditOff } from "react-icons/md";
 import { useState } from "react";
 import { SecondaryButton } from "../Components";
 // import Navbar from "../Components/Navbar/Navbar";
+import axios from "axios";
+import { myContext } from "../App";
+import { useNavigate } from "react-router-dom";
 function Profile() {
+  const { user } = useContext(myContext);
   const [showModal, setShowModal] = useState(false);
   const [edit, setEdit] = useState(false);
+  const navigate = useNavigate();
 
   const category = [
     {

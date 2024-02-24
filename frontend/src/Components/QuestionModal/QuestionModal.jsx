@@ -3,7 +3,7 @@ import { useEffect, useId, useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import TopicList from "../TopicList";
@@ -18,22 +18,26 @@ const QuestionModal = ({
   confirmPassword,
 }) => {
   const handleRegister = async (selectedTopics) => {
-    if (selectedTopics.length === 0) {
-      toast.error("Select some topics.", {
-        duration: 1500,
-        position: "bottom-center",
-      });
-      return;
-    }
-    const data = { name, email, password, selectedTopics };
+    // if (selectedTopics.length === 0) {
+    //   toast.error("Select some topics.", {
+    //     duration: 1500,
+    //     position: "bottom-center",
+    //   });
+    //   return;
+    // }
+    const data = {
+      name,
+      email,
+      password,
+      selectedTopics,
+    };
     try {
-      const result = await axios.post("/api/auth/register", data);
       toast.success("User registered, please login.", {
         duration: 1500,
         position: "bottom-center",
       });
       onClose();
-      return redirect("/login");
+      return redirect("/");
     } catch (error) {
       toast.error("Internal server error.", {
         duration: 1500,
@@ -223,8 +227,14 @@ const QuestionModal = ({
                     );
                   })}
                 </div>
-                <div className=" flex gap-[5px] absolute  bottom-[20px]  right-[20px] bg-darkThemeSecondary hover:text-primary text-lg text-white px-[15px] py-[5px] rounded-xl">
-                  <button className="">Get Started</button>
+                <div
+                  onClick={() => handleRegister()}
+                  className=" flex gap-[5px] absolute  bottom-[20px]  right-[20px] bg-pink px-[15px] py-[5px] rounded-xl"
+                >
+                  <h4>Lets Start</h4>
+                  <button className="">
+                    <FaChevronRight size={25} />
+                  </button>
                 </div>
               </div>
             </div>

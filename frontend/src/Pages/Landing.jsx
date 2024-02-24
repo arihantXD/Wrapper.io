@@ -1,6 +1,7 @@
 import Navbar from "../Components/Navbar/Navbar";
 
 const Landing = () => {
+  useEffect(() => {}, [user]);
   return (
     <>
       <div className="bg-darkThemePrimary h-[100vh]">

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Logo,
   PrimaryButton,
@@ -15,7 +15,9 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [gender, setGender] = useState("");
+  const [profession, setProfession] = useState("");
+  const [birthday, setBirthday] = useState("");
   const checkPassword = () => {
     // if (!name || !email || !password || !confirmPassword) {
     //   toast.error("Some fields are empty.", {
@@ -24,16 +26,13 @@ const Register = () => {
     //   });
     //   return false;
     // }
-    // if (password !== confirmPassword) {
-    //   toast.error("Password not matched.", {
-    //     duration: 1500,
-    //     position: "bottom-center",
-    //   });
-    //   return false;
-    // }
     return true;
   };
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    const user = localStorage.getItem("localUser");
+    if (user) navigate("/");
+  }, []);
   return (
     <div className="min-h-[100%] flex flex-col gap-6 w-[100%] bg-darkThemePrimary lg:py-[30px]">
       <Navbar />
@@ -82,24 +81,24 @@ const Register = () => {
               name="birthday"
               placeholder="Date of Birth(MM/DD/YYYY)"
               focus={true}
-              // onChange={(e) => setConfirmPassword(e.target.value)}
-              // value={confirmPassword}
+              onChange={(e) => setBirthday(e.target.value)}
+              value={birthday}
               required
             />
             <PrimaryFormInput
               type="text"
               name="profession"
               placeholder="Profession"
-              // onChange={(e) => setConfirmPassword(e.target.value)}
-              // value={confirmPassword}
+              onChange={(e) => setProfession(e.target.value)}
+              value={profession}
               required
             />
             <PrimaryFormInput
               type="text"
               name="gender"
               placeholder="Gender"
-              // onChange={(e) => setConfirmPassword(e.target.value)}
-              // value={confirmPassword}
+              onChange={(e) => setGender(e.target.value)}
+              value={gender}
               required
             />
           </div>
@@ -124,6 +123,9 @@ const Register = () => {
         email={email}
         password={password}
         confirmPassword={confirmPassword}
+        birthday={birthday}
+        gender={gender}
+        profession={profession}
         onClose={() => setShowModal(false)}
       ></QuestionModal>
     </div>
