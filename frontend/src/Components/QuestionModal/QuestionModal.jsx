@@ -216,7 +216,8 @@ const QuestionModal = ({
                   />
                 </div>
                 <div className="mt-[20px] grid grid-cols-4 gap-4">
-                  {st.map((s) => {
+                  {console.log(selectedTopics)}
+                  {selectedTopics.map((s) => {
                     return (
                       <button
                         key={parseInt(Math.random() * 10000)}

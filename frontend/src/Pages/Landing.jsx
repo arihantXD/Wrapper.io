@@ -1,10 +1,19 @@
+import { useContext } from "react";
 import Navbar from "../Components/Navbar/Navbar";
-import { useEffect } from "react";
+import { myContext } from "../App";
+
 const Landing = () => {
-  // useEffect(() => {}, [user]);
+  const emotionArray = [
+    { name: "Joy", icon: "😆" },
+    { name: "Excitement", icon: "🤠" },
+    { name: "Desire", icon: "😒" },
+    { name: "disappointment", icon: "😡" },
+    { name: "sadness", icon: "🥺" },
+  ];
+  const { emotion, setEmotion } = useContext(myContext);
   return (
     <>
-      <div className="bg-darkThemePrimary h-[100vh]">
+      <div className="relative bg-darkThemePrimary h-[100vh]">
         <Navbar></Navbar>
         <div className="pt-20 flex justify-center px-8">
           <div className="flex flex-col gap-2 items-start border-r-2 border-primary pr-2">

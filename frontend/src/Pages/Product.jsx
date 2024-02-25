@@ -10,6 +10,7 @@ const Product = () => {
   const navigate = useNavigate();
   const [inputType, setInputType] = useState("ytVideo");
   const { user, setUser } = useContext(myContext);
+
   return (
     <div
       className="w-[100%] h-[100%] bg-darkThemePrimary overflow-hidden"
