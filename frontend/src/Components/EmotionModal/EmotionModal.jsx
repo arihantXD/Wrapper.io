@@ -3,7 +3,7 @@ import { IoMdClose } from "react-icons/io";
 import { useContext } from "react";
 import { myContext } from "../../App";
 function EmotionModal({ isVisible, onClose }) {
-  const { emotion, setEmotio, user } = useContext(myContext);
+  const { emotion, setEmotion, user } = useContext(myContext);
   if (!isVisible || !user) {
     return null;
   }
@@ -26,7 +26,7 @@ function EmotionModal({ isVisible, onClose }) {
               onClick={() => {
                 onClose(false);
                 setEmotion({ name: "joy", icon: "😆" });
-                localStorage.setItem("emotion", emotion.name);
+                localStorage.setItem("emotion", "joy");
               }}
             >
               😆
@@ -35,7 +35,7 @@ function EmotionModal({ isVisible, onClose }) {
               onClick={() => {
                 onClose(false);
                 setEmotion({ name: "excitement", icon: "🤠" });
-                localStorage.setItem("emotion", emotion.name);
+                localStorage.setItem("emotion", "excitement");
               }}
             >
               🤠
@@ -44,7 +44,7 @@ function EmotionModal({ isVisible, onClose }) {
               onClick={() => {
                 onClose(false);
                 setEmotion({ name: "desire", icon: "😒" });
-                localStorage.setItem("emotion", emotion.name);
+                localStorage.setItem("emotion", "desire");
               }}
             >
               😒
@@ -53,7 +53,7 @@ function EmotionModal({ isVisible, onClose }) {
               onClick={() => {
                 onClose(false);
                 setEmotion({ name: "disappointment", icon: "😡" });
-                localStorage.setItem("emotion", emotion.name);
+                localStorage.setItem("emotion", "disappointment");
               }}
             >
               😡
@@ -62,7 +62,7 @@ function EmotionModal({ isVisible, onClose }) {
               onClick={() => {
                 onClose(false);
                 setEmotion({ name: "sadness", icon: "🥺" });
-                localStorage.setItem("emotion", emotion.name);
+                localStorage.setItem("emotion", "sadness");
               }}
             >
               🥺

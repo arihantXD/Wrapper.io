@@ -11,9 +11,9 @@ const Landing = () => {
     { name: "disappointment", icon: "😡" },
     { name: "sadness", icon: "🥺" },
   ];
-  const { emotion, setEmotion } = useContext(myContext);
+
   const [showModal, setShowModal] = useState(true);
-  console.log(emotion);
+  // console.log(emotion);
   return (
     <>
       <div className="relative bg-darkThemePrimary h-[100vh]">
