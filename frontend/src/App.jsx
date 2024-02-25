@@ -49,8 +49,9 @@ import { createContext, useState } from "react";
 export const myContext = createContext();
 function App() {
   const [user, setUser] = useState();
+  const [emotion, setEmotion] = useState();
   return (
-    <myContext.Provider value={{ user, setUser }}>
+    <myContext.Provider value={{ user, setUser, emotion, setEmotion }}>
       <RouterProvider router={router} />
     </myContext.Provider>
   );

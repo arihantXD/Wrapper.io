@@ -59,7 +59,7 @@ const Login = () => {
         duration: 1500,
         position: "bottom-center",
       });
-      return navigate("/product");
+      return navigate("/home");
     } catch (error) {
       toast.error(error?.response?.data?.message, {
         duration: 5000,

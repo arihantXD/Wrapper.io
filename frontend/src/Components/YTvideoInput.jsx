@@ -36,8 +36,14 @@ const YTVideoInput = () => {
           <video src="/YtVideo.mp4" autoPlay muted className=""></video>
         </div>
       )}
-      {input && <div className="text-white">{input}</div>}
-      <h4>The summary for the video are</h4>
+      {input && (
+        <div className="text-white px-[10px] mt-[20px] w-[100%]">
+          <h3 className="my-[20px]">The summary for the video are</h3>
+          <p className="h-[300px] p-[10px] overflow-y-scroll border-primary border-[2px]">
+            {input}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

@@ -5,7 +5,7 @@ const TopicList = ({ page, category, selectedTopics }) => {
   function handleSelection(topic, e) {
     e.currentTarget.className =
       "bg-[#f73f3f] translate-y-[400px] opacity-0 transition duration-500 px-[20px] py-2 text-center rounded-md text-white text-xs flex justify-center gap-2  hover:text-white";
-    selectedTopics.push(() => topic);
+    selectedTopics.push(topic);
   }
   return (
     <div className="flex flex-col px-[20px]" style={{ fontFamily: "Poppins" }}>

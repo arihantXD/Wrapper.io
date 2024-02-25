@@ -10,8 +10,9 @@ import { SecondaryButton } from "../Components";
 import axios from "axios";
 import { myContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 function Profile() {
-  const { user } = useContext(myContext);
+  const { user, setUser } = useContext(myContext);
   const [showModal, setShowModal] = useState(false);
   const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
@@ -40,6 +41,16 @@ function Profile() {
     Gender: "Male",
     Birthday: "02-jan-2000",
     Profession: "Software Engineer",
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setUser("");
+    toast.success("User logged out.", {
+      duration: 1500,
+      position: "bottom-center",
+    });
+    navigate("/");
   };
 
   return (
@@ -125,7 +136,10 @@ function Profile() {
             </div>
             <div className="mt-[30px] flex gap-4">
               <PrimaryButton text="Update" />
-              <SecondaryButton text="Log Out"></SecondaryButton>
+              <SecondaryButton
+                onClick={handleLogout}
+                text="Log Out"
+              ></SecondaryButton>
             </div>
           </div>
         </div>
