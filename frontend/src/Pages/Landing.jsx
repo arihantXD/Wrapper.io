@@ -1,16 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import { myContext } from "../App";
+import EmotionModal from "../Components/EmotionModal/EmotionModal";
 
 const Landing = () => {
   const emotionArray = [
-    { name: "Joy", icon: "😆" },
-    { name: "Excitement", icon: "🤠" },
-    { name: "Desire", icon: "😒" },
+    { name: "joy", icon: "😆" },
+    { name: "excitement", icon: "🤠" },
+    { name: "desire", icon: "😒" },
     { name: "disappointment", icon: "😡" },
     { name: "sadness", icon: "🥺" },
   ];
   const { emotion, setEmotion } = useContext(myContext);
+  const [showModal, setShowModal] = useState(true);
+  console.log(emotion);
   return (
     <>
       <div className="relative bg-darkThemePrimary h-[100vh]">
@@ -52,6 +55,10 @@ const Landing = () => {
           </div>
           <img src="/podcastSeating1.jpg" alt="" className="rounded-e-lg" />
         </div>
+        <EmotionModal
+          isVisible={showModal}
+          onClose={setShowModal}
+        ></EmotionModal>
       </div>
     </>
   );
